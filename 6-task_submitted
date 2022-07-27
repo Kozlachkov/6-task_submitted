@@ -1,0 +1,133 @@
+#Задача 1
+#Эмулировать функцию eval()
+#Программа в некоторых выражениях хромает, но доводить тупо лень
+# numbers1 = ["0",'1','2','3','4','5','6','7','8','9']
+# symbols1 = ['(',')','*','/','+','-',' ']
+# equation1 = '5 + (30-3*5+8)-3 * (20/5)'
+
+# def looking_for_mult(symbols_local):
+#     if len(symbols_local)==0: return -1
+#     for i in range(len(symbols_local)):
+#         if ('*' == symbols_local[i]): return i
+#     return -1
+# def looking_for_div(symbols_local):
+#     if len(symbols_local)==0: return -1
+#     for i in range(len(symbols_local)):
+#         if ('/' == symbols_local[i]): return i
+#     return -1  
+# def looking_for_subtr(symbols_local):
+#     if len(symbols_local)==0: return -1
+#     for i in range(len(symbols_local)):
+#         if ('-' == symbols_local[i]): return i
+#     return -1     
+# def looking_for_summ(symbols_local):
+#     if len(symbols_local)==0: return -1
+#     for i in range(len(symbols_local)):
+#         if ('+' == symbols_local[i]): return i
+#     return -1 
+# def calc (func, a, b):
+#     return func(a,b)
+
+
+# def counting_in_brackets(equation_in_brackets):
+#     str1=''; symbols_local=[]; numbers_local=[]
+#     for char in range(len(equation_in_brackets)):
+#         if (equation_in_brackets[char]!=' '):
+#             if equation_in_brackets[char] in numbers1: 
+#                 str1+=equation_in_brackets[char]
+#             else: 
+#                 symbols_local.append(equation_in_brackets[char])
+#                 numbers_local.append(int(str1))
+#                 str1=''
+#     numbers_local.append(int(str1))            
+#     while looking_for_mult(symbols_local)!=-1:
+#         position1=looking_for_mult(symbols_local)
+#         res1= calc(lambda x,y: x*y, numbers_local[position1], numbers_local[position1+1])
+#         numbers_local.insert(position1+1, res1); numbers_local.pop(position1); numbers_local.pop(position1+1)
+#         symbols_local.pop(position1)
+#     while looking_for_div(symbols_local)!=-1:
+#         position1=looking_for_div(symbols_local)
+#         res1= calc(lambda x,y: x//y, numbers_local[position1], numbers_local[position1+1])
+#         numbers_local.insert(position1+1, res1); numbers_local.pop(position1); numbers_local.pop(position1+1)
+#         symbols_local.pop(position1)    
+#     while looking_for_subtr(symbols_local)!=-1:
+#         position1=looking_for_subtr(symbols_local)
+#         res1= calc(lambda x,y: x-y, numbers_local[position1], numbers_local[position1+1])
+#         numbers_local.insert(position1+1, res1); numbers_local.pop(position1); numbers_local.pop(position1+1)
+#         symbols_local.pop(position1)    
+#     while looking_for_summ(symbols_local)!=-1:
+#         position1=looking_for_summ(symbols_local)
+#         res1= calc(lambda x,y: x+y, numbers_local[position1], numbers_local[position1+1])
+#         numbers_local.insert(position1+1, res1); numbers_local.pop(position1); numbers_local.pop(position1+1)
+#         symbols_local.pop(position1)     
+#     return numbers_local[0]
+
+                
+
+# opened_brackets=[]
+# closed_brackets=[]
+# equation_in_brackets =''
+# bracket2_position=-1; cut_start=''; cut_end=''
+# for i in range(len(equation1)): #в выражении присутствуют непредусмотренные символы
+#     if not ((equation1[i] in numbers1) or (equation1[i] in symbols1)): print("неверное выражение"); exit
+# for i in range(len(equation1)): #не совпадает кол-во открывающих и закрывающих скобок
+#     if equation1[i] == symbols1[0]: opened_brackets.append(i)
+#     if equation1[i] == symbols1[1]: closed_brackets.append(i)
+# if len(opened_brackets)!=len(closed_brackets): print("неверное выражение"); exit    
+
+# for i in range(len(opened_brackets)):
+#     bracket1_position =opened_brackets[-1-i]
+#     #ищем закрывающую скобку
+#     for j in range(len(closed_brackets)):
+#         if closed_brackets[j]>bracket1_position: bracket2_position=closed_brackets[j]; break
+#     if bracket2_position==-1: print("неверное выражение"); exit 
+#     equation_in_brackets = equation1[bracket1_position+1:bracket2_position]
+#     if bracket1_position==0: cut_start=''
+#     else: cut_start=equation1[0:bracket1_position]; 
+#     if bracket2_position!=len(equation1): cut_end=equation1[bracket2_position+1:len(equation1)]
+#     else: cut_end=''
+#     result_in_brackets = counting_in_brackets(equation_in_brackets)
+#     equation1 = cut_start + str(result_in_brackets) + cut_end
+# result_in_brackets = counting_in_brackets(equation1)   
+# print(result_in_brackets) 
+    
+
+
+#///////////////////////////////
+#Задача 2
+#Дана последовательность чисел. Получить список уникальных элементов заданной последовательности.
+#Пример: [1, 2, 3, 5, 1, 5, 3, 10] => [2, 10]
+#list1 = [1, 2, 3, 5, 1, 5, 3, 10]
+# set1 =set()
+# for i in range(len(list1)):
+#     number=list1[i]
+#     for j in range(i+1,len(list1)):
+#         if list1[i]==list1[j]: 
+#             set1.add(list1[i]); 
+#             break
+# set2=set(list1)
+# dl = set2.difference(set1) 
+# print(dl)
+
+
+
+#///////////////////////////////
+#Задача 3
+#Найти сумму чисел списка стоящих на нечетной позиции
+# list1 = [1, 2, 3, 5, 1, 5, 3, 10]
+# sum=0
+# for i in range(0,len(list1),2):
+#     sum+=list1[i]
+# print(sum)
+
+
+
+#///////////////////////////////
+#Задача 4
+#Для натурального n создать словарь индекс-значение, состоящий из элементов последовательности 3n + 1.
+#Для n = 6: {1: 4, 2: 7, 3: 10, 4: 13, 5: 16, 6: 19}
+# n = 6
+# dict1={}
+# for i in range (n):
+#     dict1[i+1] = (3*(i+1))+1
+# print(dict1)    
